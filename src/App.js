@@ -16,7 +16,7 @@ function App() {
         {AppointmentList
         
         .map(appointment => (
-            <AppointmentInfo key={appointment.id}
+            <AppointmentInfo key={appointment.id} // Passed Via Component
             appointment={appointment}
             />
         ))}
