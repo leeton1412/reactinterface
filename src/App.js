@@ -33,6 +33,10 @@ function App() {
         .map(appointment => (
             <AppointmentInfo key={appointment.id} // Passed Via Component
             appointment={appointment}
+            onDeleteAppointment={
+              appointmentId => 
+              setAppointmentList(appointmentList.filter(appointment => appointment.id !== appointmentId))
+            }
             />
         ))}
 
