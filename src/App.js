@@ -44,9 +44,15 @@ function App() {
   return (
     <div className="App container mx-auto mt-3 font-thin">
       <h1 className="text-5xl"><RiFolder5Line className="inline-block text-red-400 align-top mb-10"/>Your Appointment</h1>
-      <AddAppointment />
+      <AddAppointment 
+      onSendAppointment={myAppointment => setAppointmentList([...appointmentList, myAppointment])}
+      lastId={appointmentList.reduce((max, item) => Number(item.id) > max ? Number(item.id): max, 0)} />
       <Search query={query}
-      onQueryChange={ myQuery => setQuery(myQuery)} />
+      onQueryChange={ myQuery => setQuery(myQuery)}
+      orderBy={orderBy}
+      onOrderByChange={mySort => setOrderBy(mySort)}
+      sortBy={sortBy}
+      onSortByChange={mySort => setSortBy(mySort)} />
 
       <ul className="divide-y divide-grey-400">
       {filteredAppointments
