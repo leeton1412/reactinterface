@@ -1,7 +1,6 @@
 import {RiFolder5Line} from "react-icons/ri"
 import Search from "./components/Search";
 import AddAppointment from "./components/AddAppointments";
-
 import AppointmentInfo from "./components/Appointmentinfo";
 import { useEffect, useState, useCallback } from "react";
 
@@ -12,7 +11,6 @@ function App() {
   let [sortBy, setSortBy] = useState("petName");
   let [orderBy, setOrderBy] = useState("asc");
 
-
   const filteredAppointments = appointmentList.filter(
     item => {
       return (
@@ -22,7 +20,7 @@ function App() {
       )
     }
   ).sort((a,b) => {
-    let order = (orderBy=== 'asc') ? 1 : -1;
+    let order = (orderBy === 'asc') ? 1 : -1;
     return (
       a[sortBy].toLowerCase() <
       b[sortBy].toLowerCase() ? -1 * order : 1 * order

@@ -1,7 +1,7 @@
 import { BiCalendarPlus } from "react-icons/bi";
 import { useState } from "react";
 
-const AddAppointment = ( {onSendAppointment, lastId}) => {
+const AddAppointment = ( { onSendAppointment, lastId }) => {
     const clearData = {
       ownerName: '',
       petName: '',
@@ -17,12 +17,12 @@ const AddAppointment = ( {onSendAppointment, lastId}) => {
         id: lastId + 1,
         ownerName: formData.ownerName,
         petName: formData.petName,
-        aptDate: formData.aptDate + '' + formData.aptTime,
+        aptDate: formData.aptDate + ' ' + formData.aptTime,
         aptNotes: formData.aptNotes        
       }
       onSendAppointment(appointmentInfo);
       setFromData(clearData);
-      setToggleForm(!toggleForm)
+      setToggleForm(!toggleForm);
     }
 
     return (
@@ -88,7 +88,7 @@ const AddAppointment = ( {onSendAppointment, lastId}) => {
                   </label>
                   <div className="mt-1 sm:mt-0 sm:col-span-2">
                     <textarea id="aptNotes" name="aptNotes" rows="3"
-                    onChange={(event) => {setFromData({formData, aptNotes : event.target.value})}}
+                    onChange={(event) => {setFromData({...formData, aptNotes : event.target.value})}}
                     value={formData.aptNotes}
                       className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Detailed comments about the condition"></textarea>
                   </div>
