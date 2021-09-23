@@ -8,6 +8,17 @@ import { useEffect, useState, useCallback } from "react";
 function App() {
 
   let [appointmentList, setAppointmentList] =  useState ([]);
+  let [query, setQuery] = useState("");
+
+  const filteredAppointments = appointmentList.filter(
+    item => {
+      return (
+        item.petName.toLowerCase().includes(query.toLowerCase()) ||
+        item.ownerName.toLowerCase().includes(query.toLowerCase()) ||
+        item.aptNotes.toLowerCase().includes(query.toLowerCase())
+      )
+    }
+  )
 
   const fetchData = useCallback(() => {
     fetch('./data.json')
@@ -25,10 +36,11 @@ function App() {
     <div className="App container mx-auto mt-3 font-thin">
       <h1 className="text-5xl"><RiFolder5Line className="inline-block text-red-400 align-top mb-10"/>Your Appointment</h1>
       <AddAppointment />
-      <Search />
+      <Search query={query}
+      onQueryChange={ myQuery => setQuery(myQuery)} />
 
       <ul className="divide-y divide-grey-400">
-      {appointmentList
+      {filteredAppointments
         
         .map(appointment => (
             <AppointmentInfo key={appointment.id} // Passed Via Component
